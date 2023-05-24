@@ -27,10 +27,8 @@ app.post("/register", async (req, res) => {
             pincode
         });
         await user.validate();
-        let result = await user.save();
-        result = result.toObject();
-        delete result.newPassword;
-        res.send(result);
+        await user.save();
+        res.send("Signed Up sucessfully");
     }
     catch (error) {
         res.status(400).send({ error: error.message });
